@@ -164,11 +164,12 @@ def evaluate(args, model, features, tag="dev"):
     preds = np.concatenate(preds, axis=0).astype(np.float32)
     ans = to_official(preds, features)
     if len(ans) > 0:
-        best_f1, _, best_f1_ign, _, re_p, re_r = official_evaluate(ans, args.data_dir)
+        # best_f1, _, best_f1_ign, _, re_p, re_r = official_evaluate(ans, args.data_dir)
+        best_f1, _, best_f1_ign, _, re_r = official_evaluate(ans, args.data_dir)
     output = {
         tag + "_F1": best_f1 * 100,
         tag + "_F1_ign": best_f1_ign * 100,
-        tag + "_re_p": re_p * 100,
+        # tag + "_re_p": re_p * 100,
         tag + "_re_r": re_r * 100,
         tag + "_average_loss": average_loss
     }
